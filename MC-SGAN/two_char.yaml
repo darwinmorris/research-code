@@ -1,0 +1,36 @@
+data:
+  type: image
+  train_dir: data/multi_char
+  test_dir: data/multi_char
+  img_size: 128
+  nlabels: 14
+generator:
+  name: resnet
+  kwargs:
+    nfilter: 32
+    nfilter_max: 512
+    embed_size: 128
+discriminator:
+  name: resnet
+  kwargs:
+    nfilter: 32
+    nfilter_max: 512
+    embed_size: 128
+z_dist:
+  type: gauss
+  dim: 256
+training:
+  out_dir: output/hella_char
+  batch_size: 24
+  monitoring: tensorboard
+  sample_every: 10000
+  backup_every: 10000
+test:
+  batch_size: 32
+  sample_size: 1
+  sample_nrow: 8
+  model_file: model_00039999.pt
+  n_samps: 2048
+interpolations:
+  nzs: 10
+  nsubsteps: 75
